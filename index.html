@@ -1,26 +1,233 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yuheng Wang</title>
-</head>
-<body style="font-family: Arial; max-width: 800px; margin: 40px auto;">
-  
-  <h1>Yuheng Wang</h1>
-  <p>Undergrad Student in Computer Science</p>
-  
-  <h2>About</h2>
-  <p>
-    123
-  </p>
-  
-  <h2>Publications</h2>
-  <ul>
-    <li>Paper Title, Conference 2025</li>
-  </ul>
-  
-  <h2>Contact</h2>
-  <p>Email: your_email@example.com</p>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f6ff;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .avatar {
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-text h1 { font-size: 1.75rem; font-weight: 700; }
+    .hero-text .subtitle { color: #555; font-size: 0.95rem; margin-top: 0.2rem; }
+
+    .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.72rem; font-weight: 500;
+      padding: 0.3rem 0.7rem; border-radius: 999px;
+    }
+    .badge-blue  { background: #dbeafe; color: #1d4ed8; }
+    .badge-cyan  { background: #cffafe; color: #0e7490; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    hr { border: none; border-top: 1px solid #dde6f5; margin: 2rem 0; }
+
+    h2 {
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: #3b82f6; margin-bottom: 1rem;
+    }
+
+    /* ABOUT */
+    .about p { font-size: 0.97rem; color: #444; line-height: 1.8; }
+
+    /* RESEARCH INTERESTS */
+    /* .interests { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .interest {
+      background: #eff6ff; border: 1.5px solid #bfdbfe;
+      color: #1d4ed8; font-size: 0.8rem; font-weight: 500;
+      padding: 0.35rem 0.85rem; border-radius: 8px; transition: all 0.15s;
+    }
+    .interest:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; } */
+
+    /* PROJECTS / RESEARCH */
+    .projects { display: flex; flex-direction: column; gap: 1rem; }
+    .project-card {
+      background: #fff; border: 1.5px solid #dde6f5;
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      text-decoration: none; color: inherit;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      transition: all 0.2s;
+    }
+    .project-card:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 4px 20px rgba(59,130,246,0.12);
+      transform: translateY(-2px);
+    }
+    .project-card h3 { font-size: 0.95rem; font-weight: 600; }
+    .project-card p  { font-size: 0.83rem; color: #666; margin-top: 0.3rem; line-height: 1.55; }
+    .project-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; margin-left: 1rem; flex-shrink: 0; }
+    .pill {
+      font-size: 0.68rem; font-weight: 500;
+      padding: 0.2rem 0.6rem; border-radius: 999px; white-space: nowrap;
+    }
+    .pill-blue { background: #dbeafe; color: #1d4ed8; }
+    .pill-cyan { background: #cffafe; color: #0e7490; }
+    .pill-purple { background: #ede9fe; color: #6d28d9; }
+
+    /* EDUCATION */
+    .edu-card {
+      background: #fff; border: 1.5px solid #dde6f5;
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .edu-card h3 { font-size: 0.95rem; font-weight: 600; }
+    .edu-card p  { font-size: 0.83rem; color: #666; margin-top: 0.2rem; }
+    .edu-year {
+      font-size: 0.78rem; font-weight: 500; color: #3b82f6;
+      background: #eff6ff; padding: 0.3rem 0.7rem; border-radius: 6px; flex-shrink: 0;
+    }
+
+    /* CONTACT */
+    .links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; font-weight: 500;
+      color: #3b82f6; background: #eff6ff;
+      padding: 0.5rem 1rem; border-radius: 8px;
+      text-decoration: none; transition: all 0.15s;
+    }
+    .link:hover { background: #3b82f6; color: #fff; }
+
+    footer { margin-top: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
+
+    @media (max-width: 520px) {
+      .hero { flex-direction: column; align-items: flex-start; }
+      .edu-card { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar">
+      <!-- Replace with: <img src="https://github.com/yourusername.png" alt="Your Name"> -->
+      👤
+    </div>
+    <div class="hero-text">
+      <h1>Your Name</h1>
+      <p class="subtitle">🎓 Undergrad @ UW CSE &  </p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ABOUT -->
+  <div class="about">
+    <h2>About</h2>
+    <p>
+      I am an undergraduate student in the RAIVN Lab led by Prof. Ranjay Krishna.
+      I am currently working on video generation under the supervision of Prof. Jason Ren and PhD student Xiang Fan.
+      More broadly, I am curious about how generative models understand and represent the visual world.
+      I am open to exploring related areas.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- RESEARCH INTERESTS -->
+  <!-- <section>
+    <h2>Research Interests</h2>
+    <div class="interests">
+      <span class="interest">Object Detection</span>
+      <span class="interest">Image Segmentation</span>
+      <span class="interest">3D Vision</span>
+      <span class="interest">Deep Learning</span>
+      <span class="interest">Neural Networks</span>
+      <span class="interest">Self-Supervised Learning</span>
+    </div>
+  </section> -->
+
+  <hr>
+
+  <!-- RESEARCH / PROJECTS -->
+  <section>
+    <h2>Research & Projects</h2>
+    <div class="projects">
+
+      <a class="project-card" href="https://github.com/yourusername/project-one" target="_blank">
+        <div>
+          <h3>RefVAE</h3>
+          <p>We are working on imporving the autoencdoer's performance by adding a reference frame to the decoder.</p>
+        </div>
+        <div class="project-meta">
+          <span class="pill pill-cyan">In Progress</span>
+          <span class="pill pill-blue">Video Generation</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2>Education</h2>
+    <div class="edu-card">
+      <div>
+        <h3>Your University</h3>
+        <p>B.S. Computer Science &nbsp;·&nbsp; GPA: X.XX / 4.0</p>
+        <p style="margin-top:0.2rem;font-size:0.8rem;color:#aaa;">Relevant: Computer Vision, Machine Learning, Linear Algebra, Algorithms</p>
+      </div>
+      <span class="edu-year">2022 – 2026</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- CONTACT -->
+  <section>
+    <h2>Contact</h2>
+    <div class="links">
+      <a class="link" href="yuhengw@cs.washington.edu">✉ Email</a>
+      <a class="link" href="https://github.com/Arrokothwh" target="_blank">GitHub</a>
+      <a class="link" href="www.linkedin.com/in/yuheng-wang-957a5b330" target="_blank">LinkedIn</a>
+      <a class="link" href="resume.pdf" target="_blank">📄 CV</a>
+      <!-- <a class="link" href="https://scholar.google.com" target="_blank">Google Scholar</a> -->
+    </div>
+  </section>
+
+  <footer>© 2026 Yuheng Wang</footer>
+
+</div>
 </body>
 </html>
