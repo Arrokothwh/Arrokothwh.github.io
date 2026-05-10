@@ -18,15 +18,38 @@
     .container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 3rem 2rem 5rem;
+      padding: 2.5rem 2rem 4rem;
     }
 
-    /* HERO */
-    .hero {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+    /* HERO BANNER */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      height: clamp(280px, 42vw, 440px);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,
+        rgba(10, 20, 40, 0.05) 0%,
+        rgba(10, 20, 40, 0.25) 45%,
+        rgba(10, 20, 40, 0.65) 85%,
+        rgba(10, 20, 40, 0.85) 100%);
+    }
+    .hero-inner {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 0; right: 0;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; align-items: center; gap: 1.25rem;
     }
 
     .avatar {
@@ -37,11 +60,58 @@
       font-size: 2.2rem;
       flex-shrink: 0;
       overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
     }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-    .hero-text h1 { font-size: 1.75rem; font-weight: 700; }
-    .hero-text .subtitle { color: #555; font-size: 0.95rem; margin-top: 0.2rem; }
+    .hero-text h1 {
+      font-size: 2rem; font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    }
+    .hero-text .subtitle {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+    }
+
+    /* PHOTO DIVIDER */
+    .photo-divider {
+      position: relative;
+      margin: 2.75rem 0;
+      height: 140px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+    }
+    .photo-divider img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+    }
+
+    /* FOOTER BANNER */
+    .footer-banner {
+      position: relative;
+      width: 100%;
+      height: clamp(180px, 22vw, 260px);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .footer-banner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 50%;
+    }
+    .footer-banner::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,
+        rgba(10, 20, 40, 0) 0%,
+        rgba(10, 20, 40, 0.35) 100%);
+    }
 
     .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
     .badge {
@@ -134,26 +204,36 @@
     footer { margin-top: 3rem; text-align: center; font-size: 0.75rem; color: #aaa; }
 
     @media (max-width: 520px) {
-      .hero { flex-direction: column; align-items: flex-start; }
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 0.85rem; padding: 0 1.25rem; bottom: 1.25rem; }
+      .hero-text h1 { font-size: 1.6rem; }
+      .avatar { width: 72px; height: 72px; }
+      .photo-divider { height: 110px; margin: 2rem 0; }
       .edu-card { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .project-card { flex-direction: column; }
+      .project-meta { flex-direction: row; margin-left: 0; margin-top: 0.6rem; align-items: flex-start; }
+      .project-thumb { width: 100%; height: 140px; }
+      .project-main { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- HERO -->
-  <div class="hero">
+<!-- HERO BANNER -->
+<section class="hero-banner">
+  <img class="hero-bg" src="pics/skyline.jpg" alt="Seattle skyline with Mt. Rainier">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
     <div class="avatar">
-     <img src="DSC07246.jpg" alt="Yuheng Wang">
+      <img src="pics/yh.jpg" alt="Yuheng Wang">
     </div>
     <div class="hero-text">
       <h1>Yuheng Wang</h1>
-      <p class="subtitle">🎓 Undergrad @ UW CSE &  Math</p>
+      <p class="subtitle">🎓 Undergrad @ UW CSE &amp; Math</p>
     </div>
   </div>
+</section>
 
-  <hr>
+<div class="container">
 
   <!-- ABOUT -->
   <div class="about">
@@ -166,7 +246,10 @@
     </p>
   </div>
 
-  <hr>
+  <!-- PHOTO DIVIDER -->
+  <div class="photo-divider">
+    <img src="pics/silhouettes.jpg" alt="">
+  </div>
 
   <!-- RESEARCH INTERESTS -->
   <!-- <section>
@@ -233,8 +316,14 @@
     </div>
   </section>
 
-  <footer>© 2026 Yuheng Wang</footer>
-
 </div>
+
+<!-- FOOTER BANNER -->
+<div class="footer-banner">
+  <img src="pics/mountains.jpg" alt="Snowy mountains">
+</div>
+
+<footer>© 2026 Yuheng Wang</footer>
+
 </body>
 </html>
