@@ -1,0 +1,167 @@
+.magic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(255, 242, 248, 0.92);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.92;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.28));
+  transition: color 0.18s ease, opacity 0.18s ease, transform 0.18s ease, filter 0.18s ease;
+}
+
+.magic-button:hover {
+  transform: translateY(-1px) scale(1.06);
+  opacity: 1;
+  color: #ffffff;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.34));
+}
+
+.magic-button svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.magic-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background:
+    radial-gradient(circle at top, rgba(252, 231, 243, 0.55), transparent 34%),
+    rgba(250, 248, 245, 0.97);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  overflow: hidden;
+}
+
+.magic-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.magic-stack {
+  width: min(92vw, 1080px);
+  max-height: min(82vh, 860px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  background: #f3ece9;
+}
+
+.magic-row {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+
+.magic-row + .magic-row {
+  margin-top: -1px;
+}
+
+.magic-tile {
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: auto;
+  flex: var(--tile-ratio, 1) 1 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: translateY(24px) scale(0.96);
+  opacity: 0;
+  animation: magicTileIn 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: var(--tile-delay, 0ms);
+  aspect-ratio: var(--tile-ratio, 1);
+}
+
+.magic-tile + .magic-tile {
+  margin-left: -1px;
+}
+
+.magic-tile img {
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  margin-left: -1px;
+  margin-top: -1px;
+  display: block;
+  object-fit: cover;
+  background: transparent;
+}
+
+.magic-empty {
+  color: #6b6171;
+  font-size: 0.95rem;
+  text-align: center;
+  place-self: center;
+}
+
+.magic-overlay-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 55;
+  border: none;
+  background: rgba(26, 26, 46, 0.72);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.magic-overlay-close:hover {
+  transform: scale(1.05);
+}
+
+.magic-overlay.is-visible + .magic-overlay-close {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes magicTileIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 520px) {
+  .magic-button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .magic-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .magic-overlay {
+    padding: 1rem 0.6rem;
+  }
+
+  .magic-stack {
+    width: 94vw;
+    max-height: min(78vh, 680px);
+  }
+}
