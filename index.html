@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yuheng Wang</title>
+  <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23b7791f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"%3E%3Crect x="5" y="4.5" width="14" height="15" rx="2.5"/%3E%3Cpath d="M9 4.5v15"/%3E%3Cpath d="M15 4.5v15"/%3E%3Cpath d="M5 8.25h4"/%3E%3Cpath d="M5 11.75h4"/%3E%3Cpath d="M5 15.25h4"/%3E%3Cpath d="M15 8.25h4"/%3E%3Cpath d="M15 11.75h4"/%3E%3Cpath d="M15 15.25h4"/%3E%3C/svg%3E'>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="art-wall.css">
   <style>
@@ -173,6 +174,16 @@
       line-height: 1.8;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
+    .about a {
+      color: #fff7fb;
+      text-decoration-color: rgba(255, 247, 251, 0.55);
+      text-underline-offset: 0.12em;
+      transition: color 0.15s ease, text-decoration-color 0.15s ease;
+    }
+    .about a:hover {
+      color: #ffffff;
+      text-decoration-color: rgba(255, 255, 255, 0.95);
+    }
 
     /* RESEARCH INTERESTS */
     /* .interests { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -310,7 +321,7 @@
     </h2>
     <p>
       I am an undergraduate student in the RAIVN Lab.
-      I work with Prof. Ranjay Krishna, Prof. Jason Ren, and PhD student Xiang Fan on video generation and video understanding.
+      I work with Prof. <a href="https://www.ranjaykrishna.com/index.html" target="_blank" rel="noopener noreferrer">Ranjay Krishna</a>, Prof. <a href="https://jason718.github.io/" target="_blank" rel="noopener noreferrer">Jason Ren</a>, and PhD student <a href="https://xiangfan.io/" target="_blank" rel="noopener noreferrer">Xiang Fan</a> on video generation and video understanding.
       More broadly, I am curious about how generative models understand and represent the visual world.
       I am open to exploring related areas.
     </p>
